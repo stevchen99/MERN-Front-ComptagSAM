@@ -59,31 +59,32 @@ export default function TicketCountChart() {
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
   if (chartData.length === 0) return <p>No ticket data available.</p>;
 
-  return (
-    <div style={{ width: '100%', height: 400 }}>
-      <h3>Ticket Count by Person</h3>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={chartData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="qui" />
-          <YAxis 
-            allowDecimals={false} 
-            label={{ value: 'Number of Tickets', angle: -90, position: 'insideLeft' }} 
-          />
-          <Tooltip />
-          <Bar dataKey="count" name="Tickets">
-            {chartData.map((entry, index) => (
-              <Cell 
-                key={`cell-${entry.qui}`} 
-                fill={PERSON_COLORS[index % PERSON_COLORS.length]} 
-              />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  );
+ // Return section inside TicketCountChart.jsx:
+return (
+  <div style={{ width: '100%', height: 400, minWidth: 0 }}>
+    <h3>Ticket Count by Person</h3>
+    <ResponsiveContainer width="100%" height={350}>
+      <BarChart
+        data={chartData}
+        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="qui" />
+        <YAxis
+          allowDecimals={false}
+          label={{ value: 'Number of Tickets', angle: -90, position: 'insideLeft' }}
+        />
+        <Tooltip />
+        <Bar dataKey="count" name="Tickets">
+          {chartData.map((entry, index) => (
+            <Cell
+              key={`cell-${entry.qui}`}
+              fill={PERSON_COLORS[index % PERSON_COLORS.length]}
+            />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+);
 }

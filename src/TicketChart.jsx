@@ -75,31 +75,31 @@ export default function TicketChart() {
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
   if (chartData.length === 0) return <p>No ticket data available.</p>;
 
-  return (
-    <div style={{ width: '100%', height: 400 }}>
-      <h3>Tickets Summary by Date & Person</h3>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={chartData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis label={{ value: 'Combien (€)', angle: -90, position: 'insideLeft' }} />
-          <Tooltip />
-          <Legend />
-          {/* Dynamically render a Bar for each person found in the API */}
-          {people.map((person, index) => (
-            <Bar
-              key={person}
-              dataKey={person}
-              name={person}
-              fill={PERSON_COLORS[index % PERSON_COLORS.length]}
-              stackId="a" // Remove stackId="a" if you prefer side-by-side bars
-            />
-          ))}
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  );
+ // Return section inside TicketChart.jsx:
+return (
+  <div style={{ width: '100%', height: 400, minWidth: 0 }}>
+    <h3>Tickets Summary by Date & Person</h3>
+    <ResponsiveContainer width="100%" height={350}>
+      <BarChart
+        data={chartData}
+        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis label={{ value: 'Combien (€)', angle: -90, position: 'insideLeft' }} />
+        <Tooltip />
+        <Legend />
+        {people.map((person, index) => (
+          <Bar
+            key={person}
+            dataKey={person}
+            name={person}
+            fill={PERSON_COLORS[index % PERSON_COLORS.length]}
+            stackId="a"
+          />
+        ))}
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+);
 }

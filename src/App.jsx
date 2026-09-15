@@ -4,32 +4,29 @@ import TicketCategoryPieChart from './TicketCategoryPieChart';
 
 function App() {
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+    <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
       <h1 style={{ marginBottom: '2rem' }}>ComptagSAM Dashboard</h1>
 
-      {/* Grid Layout Container */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
-          gap: '2rem',
-          alignItems: 'start'
+      {/* Top Row Container */}
+      <div 
+        style={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          gap: '2rem', 
+          marginBottom: '2rem' 
         }}
       >
-        {/* Top Left: Ticket Chart */}
-        <div>
+        <div style={{ flex: '1 1 450px', minWidth: 0 }}>
           <TicketChart />
         </div>
-
-        {/* Top Right: Ticket Count Chart */}
-        <div>
+        <div style={{ flex: '1 1 450px', minWidth: 0 }}>
           <TicketCountChart />
         </div>
+      </div>
 
-        {/* Bottom Full Width: Category Pie Chart */}
-        <div style={{ gridColumn: '1 / -1' }}>
-          <TicketCategoryPieChart />
-        </div>
+      {/* Bottom Chart */}
+      <div style={{ width: '100%' }}>
+        <TicketCategoryPieChart />
       </div>
     </div>
   );

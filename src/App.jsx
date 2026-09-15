@@ -1,5 +1,6 @@
 import TicketChart from './TicketChart';
 import TicketCountChart from './TicketCountChart';
+import TicketCategoryPieChart from './TicketCategoryPieChart';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <h1>ComptagSAM Dashboard</h1>
       <TicketChart />
       <TicketCountChart />
+      <TicketCategoryPieChart />
     </div>
   );
 }

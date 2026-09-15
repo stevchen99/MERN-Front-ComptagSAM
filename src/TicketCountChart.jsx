@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   BarChart,
   Bar,
+  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -10,6 +11,11 @@ import {
 } from 'recharts';
 
 const API_URL = 'https://mern-back-comptag-sam.vercel.app/api/tickets';
+
+// Distinct palette so everyone gets a unique color
+const PERSON_COLORS = [
+  '#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#0088fe', '#00c49f', '#ffbb28'
+];
 
 export default function TicketCountChart() {
   const [chartData, setChartData] = useState([]);
@@ -68,7 +74,14 @@ export default function TicketCountChart() {
             label={{ value: 'Number of Tickets', angle: -90, position: 'insideLeft' }} 
           />
           <Tooltip />
-          <Bar dataKey="count" name="Tickets" fill="#8884d8" />
+          <Bar dataKey="count" name="Tickets">
+            {chartData.map((entry, index) => (
+              <Cell 
+                key={`cell-${entry.qui}`} 
+                fill={PERSON_COLORS[index % PERSON_COLORS.length]} 
+              />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
